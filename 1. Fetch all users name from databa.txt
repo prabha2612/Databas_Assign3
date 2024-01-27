@@ -1,0 +1,35 @@
+1. Fetch all users name from database
+-- SELECT User_Name FROM User;
+
+2. Fetch all tweets of a user by user ID, with the most recent tweets first
+-- SELECT * FROM Tweet WHERE User_ID = 'V1' ORDER BY Tweet_time DESC;
+
+3. Fetch the like count of a particular tweet by tweet ID
+-- SELECT COUNT(*) AS Like_Count FROM Likes WHERE Tweet_ID = '1';
+
+4. Fetch the retweet count of a particular tweet by tweet ID
+-- SELECT COUNT(*) AS Retweet_Count FROM Retweet WHERE Original_Tweet_ID = '1';
+
+5. Fetch the comment count of a particular tweet by tweet ID
+-- SELECT COUNT(*) AS Comment_Count FROM Tweet WHERE TweetID_of_Comment = '2';
+
+6. Fetch all users' names who have retweeted a particular tweet by tweet ID
+-- SELECT u.User_Name
+   FROM Retweet r
+   JOIN User u ON r.User_ID = u.User_ID 
+   WHERE r.Original_Tweet_ID = '1';
+7. Fetch all commented tweet's content for a particular tweet by tweet ID
+-- SELECT t.Tweet_cont
+   FROM Tweet t
+   WHERE t.TweetID_of_Comment = '2';
+8. Fetch the user's timeline (all tweets from users whom I am following with tweet content and user name who has tweeted it)
+-- SELECT t.Tweet_cont, u.User_Name
+   FROM Tweet t
+   JOIN FollowIDs f ON t.User_ID = f.Following_ID
+   JOIN User u ON t.User_ID = u.User_ID
+   WHERE f.Follower_ID = 'L2' ORDER BY t.Tweet_time;
+
+
+
+
+
